@@ -45,16 +45,7 @@ class OrderItemController extends Controller
 
         OrderItem::create($request->all());
 
-        $items = Item::latest()->get();
-        $categories = Category::inRandomOrder()->take(3)->get();
-        $orderItems = OrderItem::where('session_id', Session::getId())
-                                    ->where('status', 'pending')->get();
-        
-        $total = 0;
-
-        foreach ($orderItems as $key => $orderItem) {
-            $total = $total + $orderItem->item_price;
-        }
+      
 
         return redirect()->back()->with('address', $address);
     }

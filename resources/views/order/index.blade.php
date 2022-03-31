@@ -30,7 +30,7 @@
                                     @if (count($orderItems) > 0)
                                         <div class="col-lg-12 col-md-10 mb-4">
                                             <div class="cover-container">
-                                                <h4>Your Order List</h4>
+                                                <h4 style="color: #cda45e">Your Order List</h4>
                                                 <!-- START PANEL -->
                                                 @foreach ($orderItems as $orderItem)
                                                     <div class="cover-item" style="background-image: url({{ asset($orderItem->image) }})">
@@ -143,7 +143,7 @@
 
                
                             <div class="col-sm-4 py-2">
-                                <h4 class="py-4 ">Order Summary</h4>
+                                <h4 class="py-4" style="color: #cda45e">Order Summary</h4>
                                     <div class="row">
                                         @if (count($orderItems) > 0)
                                         @foreach ($orderItems as $orderItem)
@@ -161,7 +161,7 @@
                                             <h6>Total Price : </h6>
                                         </div>
                                         <div class="col-sm-6 py-2">
-                                            <h4 style="color: #b47200">${{ $total }} Only</h4>
+                                            <h4 style="color: #cda45e">${{ $total }} Only</h4>
                                         </div>
                                         <div class="col-sm-12">
                                             <hr>
