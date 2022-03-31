@@ -56,7 +56,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
         Order::create($request->all());
 
         $orderItems = OrderItem::where('session_id', '=', $request->session_id)->get();

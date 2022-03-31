@@ -17,8 +17,8 @@
 </div>
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-cente">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+<header id="header" class="fixed-top d-flex {{ (Request::url() == 'http://localhost:8000') ? 'align-items-cente' : '' }} ">
+  <div class="container-fluid container-xl d-flex  {{ (Request::url() == 'http://localhost:8000') ? 'align-items-center' : '' }} justify-content-lg-between">
 
     <h1 class="logo me-auto me-lg-0"><a href="{{ route('welcome') }}">Restaurantly</a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
@@ -26,6 +26,7 @@
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
+        @if(Request::url() == 'http://localhost:8000')
         <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
         <li><a class="nav-link scrollto" href="#about">About</a></li>
         <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
@@ -51,6 +52,9 @@
           </ul>
         </li-->
         <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        @else
+        <li><a class="nav-link active" href="{{ route('welcome') }}" style="float: right">Home</a></li>
+        @endif
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

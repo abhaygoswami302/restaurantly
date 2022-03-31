@@ -45,8 +45,6 @@ class OrderItemController extends Controller
 
         OrderItem::create($request->all());
 
-      
-
         return redirect()->back()->with('address', $address);
     }
 
