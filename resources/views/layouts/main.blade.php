@@ -28,6 +28,28 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
+ 
+  <style>
+
+.contain {
+   margin: 0 auto;
+   max-width: 1200px;
+   width: 100%;
+ }
+ 
+ .item {
+   align-items: center;
+   color: white;
+   display: flex;
+   width: 40%;
+   height: 30%;
+   justify-content: center;
+ }
+  </style>
+
+
   <style>
 
    .myImgClass { position: relative; }
@@ -38,6 +60,32 @@
         height: 500px;
         overflow-x: hidden;
      }
+
+.cover-container {
+    height: 180px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-y: hidden;
+}
+.cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    width: 116px;
+    height: 100px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cover-item p{
+   position: absolute;
+}
+
+     .Vertical_Scroll
     /*Hover Fall Effect*/
     .fall-item {
       width: 100%;
