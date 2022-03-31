@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Item;
-use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpFoundation\Session\Session as HttpFoundationSessionSession;
 
-class OrderController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,18 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $items = Item::latest()->get();
-        $categories = Category::inRandomOrder()->take(3)->get();
-        $orderItems = OrderItem::where('session_id', Session::getId())
-                                    ->where('status', 'pending')->get();
-        
-        $total = 0;
-
-        foreach ($orderItems as $key => $orderItem) {
-            $total = $total + $orderItem->item_price;
-        }
-
-        return view('order.index', compact('items', 'categories', 'orderItems', 'total'));
+        //
     }
 
     /**
@@ -41,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+        //
     }
 
     /**
@@ -52,16 +35,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Order::create($request->all());
-
-        $orderItems = OrderItem::where('session_id', '=', $request->session_id)->get();
-
-        foreach ($orderItems as $key => $oi) {
-            $oi->status = 'ordered';
-            $oi->save();
-        }
-
-        return redirect()->back()->with('message', 'Order Placed Successfully');
+        OrderItem::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -72,7 +47,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order.show');
+        //
     }
 
     /**
@@ -83,7 +58,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order.edit');
+        //
     }
 
     /**
@@ -106,6 +81,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $orderItem = OrderItem::where('id', '=', $id)->first();
+        $orderItem->delete();
+
+        return redirect()->back();
     }
 }

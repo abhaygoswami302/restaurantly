@@ -21,73 +21,34 @@
 
                         <div class="row">
                             <div class="col-sm-12">
+                                @if (Session::has('message'))
+                                <h5 class="alert alert-success mb-2 text-center">
+                                    {{ Session::get('message') }}
+                                </h5>
+                                @endif
                                 <div class="row-fluid">
-
-                                    <div class="col-lg-12 col-md-10 mb-4">
-                                        <div class="cover-container">
-                                            <h4>Your Order List</h4>
-                                            <!-- START PANEL -->
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/cake.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/greek-salad.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/lobster-roll.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/spinach-salad.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/cake.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/mozzarella.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
-                                            </div>
-
-                                            <div class="cover-item" style="background-image: url({{ asset('assets/img/menu/caesar.jpg') }})">
-                                                <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item"><i class="bi bi-dash px-2 my-4" style="background:#b47200;border:1px solid transparent;border-radius:5%;"></i></a>
+                                    @if (count($orderItems) > 0)
+                                        <div class="col-lg-12 col-md-10 mb-4">
+                                            <div class="cover-container">
+                                                <h4>Your Order List</h4>
+                                                <!-- START PANEL -->
+                                                @foreach ($orderItems as $orderItem)
+                                                    <div class="cover-item" style="background-image: url({{ asset($orderItem->image) }})">
+                                                        <form action="{{ route('orderItem.destroy', $orderItem->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button href="{{ route('orderItem.destroy', $orderItem->id) }}" class="p-0 m-0" style="background: transparent;border:none"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Remove Item">
+                                                                <i class="bi bi-dash px-2 my-4" 
+                                                                style="background:#b47200;color:white;border:1px solid transparent;border-radius:5%;">
+                                                                </i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -125,18 +86,46 @@
                                                 <div class="mask text-center">
                                                     <h4></h4>
                                                     <p style="font-size: 22px">{{ substr($item->description, 0, 50) }}</p>
-                                                    <a href="#" class="btn btn-dark " style="border-radius: 0%">Add To My Order</a>
+                                                    <form action="{{ route('orderItem.store') }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                                        <input type="hidden" name="category_id" value="{{ $item->category->id }}">
+                                                        <input type="hidden" name="item_name" value="{{ $item->name }}">
+                                                        <input type="hidden" name="item_price" value="{{ $item->price }}">
+                                                        <input type="hidden" name="description" value="{{ $item->description }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="session_id" value="{{ Session::getId() }}">
+                                                        <input type="hidden" name="total_price" value="{{ $item->price }}">
+                                                        <input type="hidden" name="image" value="{{ $item->image }}">
+
+                                                        <button type="submit"  class="btn btn-dark " style="border-radius: 0%" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Item To Order">
+                                                            Add To My Order
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="row py-1 ">
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-10 px-3">
                                                     <h6 class="p-0 m-0">{{ $item->name }}</h6>
                                                     <small>${{ $item->price }}</small>
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <a href="{{ route('order.store') }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Item To Order">
-                                                        <i class="bi bi-plus" style="font-size: 22px;cursor: pointer;float: right;"></i>
-                                                    </a>
+                                                    <form action="{{ route('orderItem.store') }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                                        <input type="hidden" name="category_id" value="{{ $item->category->id }}">
+                                                        <input type="hidden" name="item_name" value="{{ $item->name }}">
+                                                        <input type="hidden" name="item_price" value="{{ $item->price }}">
+                                                        <input type="hidden" name="description" value="{{ $item->description }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="session_id" value="{{ Session::getId() }}">
+                                                        <input type="hidden" name="total_price" value="{{ $item->price }}">
+                                                        <input type="hidden" name="image" value="{{ $item->image }}">
+
+                                                        <button type="submit" class="p-0 m-0" style="background: transparent;border:none;float: right;" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Item To Order">
+                                                            <i class="bi bi-plus p-0 m-0" style="font-size: 30px;cursor: pointer;color:white"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>    
@@ -153,37 +142,53 @@
                
                             <div class="col-sm-4 py-2">
                                 <h4 class="py-4 ">Order Summary</h4>
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        Demo Name
-                                    </div>
-                                    <div class="col-sm-4">
-                                        $15.90
-                                    </div>
-                                    <div class="col-sm-8">
-                                        Demo Name
-                                    </div>
-                                    <div class="col-sm-4">
-                                        $15.90
-                                    </div>
-                                    <div class="col-sm-8">
-                                        Demo Name
-                                    </div>
-                                    <div class="col-sm-4">
-                                        $15.90
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <hr>
-                                    </div>
-                                    <div class="col-sm-8 py-2">
-                                        <h6>Total Price</h6>
-                                    </div>
-                                    <div class="col-sm-4 py-2">
-                                        <h6>$500 Only</h6>
-                                    </div>
-                                </div>
+                                    <div class="row">
+                                        @if (count($orderItems) > 0)
+                                        @foreach ($orderItems as $orderItem)
+                                            <div class="col-sm-8">
+                                                {{ $orderItem->item_name }}
+                                            </div>
+                                            <div class="col-sm-4">
+                                                ${{ $orderItem->item_price }}
+                                            </div>
+                                        @endforeach
+                                        <div class="col-sm-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-sm-8 py-2">
+                                            <h6>Total Price</h6>
+                                        </div>
+                                        <div class="col-sm-4 py-2">
+                                            <h6>${{ $total }} Only</h6>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <hr>
+                                        </div>
+                                        @endif
 
-                                
+                                        <form action="{{ route('order.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="item_id" value="{{ $item->id }}" required>
+                                            <input type="hidden" name="category_id" value="{{ $item->category->id }}">
+                                            <input type="hidden" name="item_name" value="{{ $item->name }}">
+                                            <input type="hidden" name="item_price" value="{{ $item->price }}">
+                                            <input type="hidden" name="description" value="{{ $item->description }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="session_id" value="{{ Session::getId() }}">
+                                            <input type="hidden" name="total_price" value="{{ $item->price }}">
+                                            <input type="hidden" name="image" value="{{ $item->image }}">
+
+                                            <div class="col-sm-12">
+                                                <input type="text" name="email" required class="myinputclass form-control" placeholder="Enter Your Email">
+                                            </div>
+                                            <div class="col-sm-12 py-2">
+                                                <input type="text" name="phone" required class="myinputclass form-control" placeholder="Enter Your Phone No">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <button type="submit" class="btn btn-success btn-block float-end">Order Now</button>
+                                            </div>
+                                        </form>
+                                    </div>
                             </div>
                         </div>
 
