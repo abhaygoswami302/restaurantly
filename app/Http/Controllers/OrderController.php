@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class OrderController extends Controller
     public function index()
     {
         $items = Item::latest()->get();
-        return view('order.index', compact('items'));
+        $categories = Category::inRandomOrder()->take(3)->get();
+        return view('order.index', compact('items', 'categories'));
     }
 
     /**

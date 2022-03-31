@@ -820,7 +820,7 @@ section {
   margin-right: 0;
 }
 .menu .menu-item {
-  margin-top: 50px;
+  margin-top: 0px;
 }
 .menu .menu-img {
   width: 70px;
@@ -829,7 +829,7 @@ section {
   border: 5px solid rgba(255, 255, 255, 0.2);
 }
 .menu .menu-content {
-  margin-left: 85px;
+  margin-left: 5px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -842,7 +842,7 @@ section {
   right: 0;
   top: -4px;
   z-index: 1;
-  color: #bab3a6;
+  color: transparent;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .menu .menu-content a {
