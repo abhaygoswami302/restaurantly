@@ -20,5 +20,6 @@ class Order extends Model
         'quantity',
         'session_id',
         'total_price',
+        'user_address'
     ];
 }

@@ -97,6 +97,7 @@
                                                         <input type="hidden" name="session_id" value="{{ Session::getId() }}">
                                                         <input type="hidden" name="total_price" value="{{ $item->price }}">
                                                         <input type="hidden" name="image" value="{{ $item->image }}">
+                                                        <input type="hidden" name="user_address" value="{{ $address->countryName }}, {{ $address->countryCode }}, {{ $address->regionCode }}, {{ $address->regionName }}, {{ $address->cityName }}, {{ $address->zipCode }}, {{ $address->isoCode }}, {{ $address->postalCode }}, {{ $address->latitude }}, {{ $address->longitude }}, {{ $address->metroCode }}, {{ $address->areaCode }}, {{ $address->timezone }}">
 
                                                         <button type="submit"  class="btn btn-dark " style="border-radius: 0%" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Item To Order">
                                                             Add To My Order
@@ -121,7 +122,8 @@
                                                         <input type="hidden" name="session_id" value="{{ Session::getId() }}">
                                                         <input type="hidden" name="total_price" value="{{ $item->price }}">
                                                         <input type="hidden" name="image" value="{{ $item->image }}">
-
+                                                        <input type="hidden" name="user_address" value="{{ $address->countryName }}, {{ $address->countryCode }}, {{ $address->regionCode }}, {{ $address->regionName }}, {{ $address->cityName }}, {{ $address->zipCode }}, {{ $address->isoCode }}, {{ $address->postalCode }}, {{ $address->latitude }}, {{ $address->longitude }}, {{ $address->metroCode }}, {{ $address->areaCode }}, {{ $address->timezone }}">
+                                                       
                                                         <button type="submit" class="p-0 m-0" style="background: transparent;border:none;float: right;" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Item To Order">
                                                             <i class="bi bi-plus p-0 m-0" style="font-size: 30px;cursor: pointer;color:white"></i>
                                                         </button>
@@ -155,11 +157,11 @@
                                         <div class="col-sm-12">
                                             <hr>
                                         </div>
-                                        <div class="col-sm-8 py-2">
-                                            <h6>Total Price</h6>
+                                        <div class="col-sm-6 py-2">
+                                            <h6>Total Price : </h6>
                                         </div>
-                                        <div class="col-sm-4 py-2">
-                                            <h6>${{ $total }} Only</h6>
+                                        <div class="col-sm-6 py-2">
+                                            <h4 style="color: #b47200">${{ $total }} Only</h4>
                                         </div>
                                         <div class="col-sm-12">
                                             <hr>
@@ -178,7 +180,11 @@
                                             <input type="hidden" name="total_price" value="{{ $item->price }}">
                                             <input type="hidden" name="image" value="{{ $item->image }}">
 
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-12 py-2">
+                                                <textarea name="user_address" id="user_address" cols="30" rows="2" class="form-control myinputclass">{{ $address->countryName }}, {{ $address->countryCode }}, {{ $address->regionCode }}, {{ $address->regionName }}, {{ $address->cityName }}, {{ $address->zipCode }}, {{ $address->isoCode }}, {{ $address->postalCode }}, {{ $address->latitude }}, {{ $address->longitude }}, {{ $address->metroCode }}, {{ $address->areaCode }}, {{ $address->timezone }}</textarea>
+                                            </div>
+
+                                            <div class="col-sm-12 py-2">
                                                 <input type="text" name="email" required class="myinputclass form-control" placeholder="Enter Your Email">
                                             </div>
                                             <div class="col-sm-12 py-2">

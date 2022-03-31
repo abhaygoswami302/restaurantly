@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('session_id');
             $table->string('total_price');
             $table->string('status')->default('ordered');
+            $table->longText('user_address');
             $table->timestamps();
         });
     }

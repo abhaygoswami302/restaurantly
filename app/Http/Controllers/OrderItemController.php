@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Item;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
+use Illuminate\Support\Facades\Session;
 
 class OrderItemController extends Controller
 {
@@ -35,8 +39,24 @@ class OrderItemController extends Controller
      */
     public function store(Request $request)
     {
+        // static ip for testing purpose : '162.159.24.227'
+        $clientIP = \Request::getClientIp(true);
+        $address = Location::get('162.159.24.227');
+
         OrderItem::create($request->all());
-        return redirect()->back();
+
+        $items = Item::latest()->get();
+        $categories = Category::inRandomOrder()->take(3)->get();
+        $orderItems = OrderItem::where('session_id', Session::getId())
+                                    ->where('status', 'pending')->get();
+        
+        $total = 0;
+
+        foreach ($orderItems as $key => $orderItem) {
+            $total = $total + $orderItem->item_price;
+        }
+
+        return redirect()->back()->with('address', $address);
     }
 
     /**
@@ -84,6 +104,6 @@ class OrderItemController extends Controller
         $orderItem = OrderItem::where('id', '=', $id)->first();
         $orderItem->delete();
 
-        return redirect()->back();
+        return redirect()->route('order.index');
     }
 }

@@ -6,10 +6,9 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpFoundation\Session\Session as HttpFoundationSessionSession;
+use Stevebauman\Location\Facades\Location;
 
 class OrderController extends Controller
 {
@@ -31,7 +30,12 @@ class OrderController extends Controller
             $total = $total + $orderItem->item_price;
         }
 
-        return view('order.index', compact('items', 'categories', 'orderItems', 'total'));
+        // static ip for testing purpose : '162.159.24.227'
+        $clientIP = \Request::getClientIp(true);
+        $address = Location::get('162.159.24.227');
+
+       
+        return view('order.index', compact('items', 'categories', 'orderItems', 'total', 'address'));
     }
 
     /**
@@ -52,6 +56,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
         Order::create($request->all());
 
         $orderItems = OrderItem::where('session_id', '=', $request->session_id)->get();
@@ -61,7 +66,7 @@ class OrderController extends Controller
             $oi->save();
         }
 
-        return redirect()->back()->with('message', 'Order Placed Successfully');
+        return redirect()->route('order.index')->with('message', 'Order Placed Successfully');
     }
 
     /**

@@ -25,6 +25,7 @@ class CreateOrderItemsTable extends Migration
             $table->string('total_price');
             $table->string('image');
             $table->string('status')->default('pending');
+            $table->longText('user_address');
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class OrderItem extends Model
         'quantity',
         'session_id',
         'total_price',
-        'image'
+        'image',
+        'user_address'
     ];
 }
