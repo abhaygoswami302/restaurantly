@@ -24,6 +24,7 @@ class OrderController extends Controller
         $orderItems = OrderItem::where('session_id', Session::getId())
                                     ->where('status', 'pending')->get();
         
+                                   // dd($items);
         $total = 0;
 
         foreach ($orderItems as $key => $orderItem) {
@@ -34,7 +35,7 @@ class OrderController extends Controller
         $clientIP = \Request::getClientIp(true);
         $address = Location::get('162.159.24.227');
 
-       
+        $address = $address->toArray();
         return view('order.index', compact('items', 'categories', 'orderItems', 'total', 'address'));
     }
 

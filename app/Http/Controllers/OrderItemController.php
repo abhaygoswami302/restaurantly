@@ -42,6 +42,7 @@ class OrderItemController extends Controller
         // static ip for testing purpose : '162.159.24.227'
         $clientIP = \Request::getClientIp(true);
         $address = Location::get('162.159.24.227');
+        $address = $address->toArray();
 
         OrderItem::create($request->all());
 
