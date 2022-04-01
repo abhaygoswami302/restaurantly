@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Item;
-use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location;
+use Illuminate\Support\Facades\Session;
 
-class OrderController extends Controller
+class OrderItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,24 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $items = Item::latest()->get();
-        $categories = Category::inRandomOrder()->take(3)->get();
-        $orderItems = OrderItem::where('session_id', Session::getId())
-                                    ->where('status', 'pending')->get();
-        
-                                   // dd($items);
-        $total = 0;
-
-        foreach ($orderItems as $key => $orderItem) {
-            $total = $total + $orderItem->item_price;
-        }
-
-        // static ip for testing purpose : '162.159.24.227'
-        $clientIP = \Request::getClientIp(true);
-        $address = Location::get('162.159.24.227');
-
-        $address = $address->toArray();
-        return view('order.index', compact('items', 'categories', 'orderItems', 'total', 'address'));
+        //
     }
 
     /**
@@ -46,7 +28,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+        //
     }
 
     /**
@@ -57,16 +39,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Order::create($request->all());
+        // static ip for testing purpose : '162.159.24.227'
+        $clientIP = \Request::getClientIp(true);
+        $address = Location::get('162.159.24.227');
+        $address = $address->toArray();
 
-        $orderItems = OrderItem::where('session_id', '=', $request->session_id)->get();
+        OrderItem::create($request->all());
 
-        foreach ($orderItems as $key => $oi) {
-            $oi->status = 'ordered';
-            $oi->save();
-        }
-
-        return redirect()->route('order.index')->with('message', 'Order Placed Successfully');
+        return redirect()->back()->with('address', $address);
     }
 
     /**
@@ -77,7 +57,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order.show');
+        //
     }
 
     /**
@@ -88,7 +68,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order.edit');
+        //
     }
 
     /**
@@ -111,6 +91,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $orderItem = OrderItem::where('id', '=', $id)->first();
+        $orderItem->delete();
+
+        return redirect()->route('order.index');
     }
 }

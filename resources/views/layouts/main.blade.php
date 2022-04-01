@@ -224,6 +224,8 @@
 
 
   </style>
+
+  @livewireStyles
 </head>
 
 <body>
@@ -257,6 +259,7 @@
     </main><!-- End #main -->
     @include('partials.footer')
 
-</body>
+    @livewireScripts
 
+</body>
 </html>
