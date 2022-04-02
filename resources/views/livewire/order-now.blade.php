@@ -41,19 +41,19 @@
 
                             <div class="row" data-aos="fade-down" data-aos-delay="100">
                                 <div class="col-lg-8 ">
-                                <ul id="menu-flters" style="text-align: left">
-                                    <li data-filter="*" class="filter-active">All</li>
-                                    @foreach ($categories as $key => $category)
-                                        @if(!$loop->first)
-                                        <li data-filter=".filter-{{ $category->name }}">{{ $category->name }}</li>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($categories as $key => $category)
-                                        @if($loop->first)
-                                        <li data-filter=".filter-{{ $category->name }}">{{ $category->name }}</li>
-                                        @endif
-                                    @endforeach
-                                </ul>
+                                    <ul id="menu-flters" style="text-align: left">
+                                        <li data-filter="*" class="filter-active">All</li>
+                                        @foreach ($categories as $key => $category)
+                                            @if(!$loop->first)
+                                            <li data-filter=".filter-{{ $category->name }}">{{ $category->name }}</li>
+                                            @endif
+                                        @endforeach
+                                        @foreach ($categories as $key => $category)
+                                            @if($loop->first)
+                                            <li data-filter=".filter-{{ $category->name }}">{{ $category->name }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
 
